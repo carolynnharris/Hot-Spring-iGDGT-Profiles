@@ -28,6 +28,8 @@ Scatterplot of ring index vs. temperature for all hot springs. Data points are c
 ### iGDGT_Profiles_by_pH.png
 Stacked barplot showing the relative abundance of iGDGTs 0 through 8. Each bar represents one hot spring. Springs are arranged in ascending pH. The X-axis indicated pH integer bins.  
 
+### iGDGT_vs_pH_Regressions_by_moietie.png
+A figure showing the relative abundance of each iGDGT moietie vs. pH for all 9 iGDGT moieties. The r2 value and p-value of the regressions are displayed on the plot. If p < 0.05, the regression is shown as a solid, black line. If p <= 0.05, the regression is shown as a dashed, grey line.
 
 ## Note 
 Ring Index (RI) was calculated as the weighted average number of GDGT rings in a sample based on the equation in Schouten et al., 2007. 
