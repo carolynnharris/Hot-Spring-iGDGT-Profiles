@@ -4,9 +4,7 @@ graphics.off()
 
 #### load relevant packages ####
 library("readxl")
-# library("dplyr")
 library("tidyverse")
-# library("reshape")
 library("gt")
 
 
