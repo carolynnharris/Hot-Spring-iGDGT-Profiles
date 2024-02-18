@@ -7,21 +7,16 @@ library("readxl")
 library("tidyverse")
 library("gt")
 
-
-
 #### load data ####
 dat <- read_excel("El Tatio_GDGTs.xlsx")
 
-
-
-# create data frame of neutral pH at different temperatures
+# Create data frame of neutral pH at different temperatures
 temp <- seq(10, 110, by = 1)
 pH <- 8 * (temp^2 * 10^(-5)) - (0.0208 * temp) + 7.4692
 neutral_line <- data.frame(Temp = temp, pH = pH)
 
 
-#### plots start here ####
-
+#### PLOTTING CODE STARTS HERE ####
 #### Hot spring T vs. pH plot ####
 png("Temp_vs_pH.png",
     width = 4, height = 3, units = 'in', res = 300)
@@ -43,6 +38,8 @@ plot(dat$Temp ~ dat$pH,
 # plot neutral pH line
 lines(neutral_line$Temp ~ neutral_line$pH,
       lwd = 2)
+
+# add axes
 axis(1, at = c(1,3,5,7,9),
      las = 1,
      tck = -0.035,
@@ -125,6 +122,7 @@ plot(dat$Ring_index ~ dat$pH,
      yaxt = "n")
 abline(pHvsRI,
        lwd = 3)
+# aadd regression parameters
 equation_text <- paste("RI =", slope, "* pH +", intercept)
 r_squared_text <- paste("R^2 =", r_squared)
 text(1, 0.6, 
@@ -367,3 +365,54 @@ legend("topright",
        pch = c(15, 15, 15, 15))
 dev.off()
 
+#### iGDGT vs. pH regressions for each iGDGT moietie ####
+
+# Calculate the maximum abundance value among all iGDGT columns
+max_abundance <- max(sapply(dat[, paste0("iGDGT.", 0:8)], max))
+
+png("iGDGT_vs_pH_regressions_by_moietie.png",
+    width = 10, height = 4, units = 'in', res = 300)  # Adjust width and height as needed
+par(mfrow = c(2, 5), 
+    mar = c(3.5, 4, 2, 1), 
+    mgp = c(2.5, 0.5, 0))
+
+
+# Loop through each iGDGT lipid column and create a scatterplot
+for (i in 0:8) {
+  col_name <- paste0("iGDGT.", i)
+  plot(dat$pH, dat[[col_name]], 
+       main = paste("iGDGT", i), 
+       xlab = "", 
+       ylab = "Relative Abundance", 
+       las = 1,
+       pch = 16, 
+       col = "cyan3", 
+       cex = 2,
+       ylim = c(0, max_abundance)) 
+  # Add in X-axis title
+  title(xlab = "pH", line = 1.5)
+  
+  # Fit linear regression model
+  lm_model <- lm(dat[[col_name]] ~ dat$pH)
+  
+  # Get R-squared value and p-value
+  r_squared <- summary(lm_model)$r.squared
+  p_value <- summary(lm_model)$coefficients[2, 4]
+  
+  # Add regression line with adjusted properties based on p-value
+  if (p_value < 0.05) {
+    abline(lm_model, col = "black", lwd = 2, lty = 1)
+  } else {
+    abline(lm_model, col = "grey70", lwd = 2, lty = 2)
+  }
+  
+  # Add R-squared and p-value to plot
+  legend("topleft",
+         legend = c(paste("R^2 =", round(r_squared, 2)),
+                    paste("p =", signif(p_value, digits = 3))),
+         col = "black",
+         bty = "n",
+         cex = 1.2)
+}
+
+dev.off()
