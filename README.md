@@ -6,7 +6,7 @@ This project provides an R script that creates several visualizations to help an
 
 # CONTENTS 
 ## R script: GDGT Data Viz.R
-Script that produces several visualizations of the El Tatio hot spring data. All figures are saved as .pngs to the working directory. 
+Script that produces several visualizations of the El Tatio hot spring data. All figures are saved as .pngs to the working directory. Dependencies: The data file 'El Tatio_GDGTs.xlsx' must be in same directory as script, otherwise edit the script to designate the full file path.
 
 ## R project: GDGT Data Viz.Rproj
 An Rproject file, allowing this script to be easily executed in Rstudio.
