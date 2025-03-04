@@ -13,7 +13,13 @@ An Rproject file, allowing this script to be easily executed in Rstudio.
 
 
 ## Sample data file: El Tatio_GDGTs.xlsx
-Sample data file including environmental metadata (temperature, pH), and iGDGT lipid data (relative abundances of iGDGTs 0 through 8 and Ring Index) for 7 hot springs in the El Tatio Geyser Field in Chile. Hot springs sediments were collected during a field campaign led by William Leavitt in January 2022. iGDGT lipids were extracted from hot spring sediments at Dartmouth College and analyzed at Harvard University. Credit: Wil Leavitt, Carolynn Harris, Olivia Pendas. 
+Sample data file including environmental metadata (temperature, pH), and iGDGT lipid data (relative abundances of iGDGTs 0 through 8 and Ring Index) for 7 hot springs in the El Tatio Geyser Field in Chile. Hot springs sediments were collected during a field campaign led by William Leavitt in January 2022. iGDGT lipids were extracted from hot spring sediments at Dartmouth College and analyzed at Harvard University. 
+
+## Credit
+Sample collections: Carolynn Harris, William Leavitt
+Lipid extractions: Carolynn Harris and Olivia Pendas 
+LC-QQQ analyses: Carolynn Harris
+Analysis code: Carolynn Harris
 
 ## Figures
 ### Temp_vs_pH.png
